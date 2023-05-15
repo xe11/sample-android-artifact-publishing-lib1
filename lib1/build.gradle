@@ -1,10 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
-    namespace 'xe11.samples.android.lib.sum'
+    namespace 'xe11.samples.android.lib1'
     compileSdk 33
 
     defaultConfig {
@@ -13,6 +14,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        aarMetadata {
+            minCompileSdk = 27
+        }
     }
 
     buildTypes {
@@ -27,6 +32,26 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'xe11'
+            artifactId = 'sample-android-artifact-publishing-lib1'
+            version = '0.0.3'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
     }
 }
 
