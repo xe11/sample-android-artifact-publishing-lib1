@@ -20,8 +20,8 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Upload Release
-        uses: ncipollo/release-action@v1
-        with:
-            artifacts: lib1/build/outputs/aar/lib1-debug.aar
-            token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Upload Release
+#        uses: ncipollo/release-action@v1
+#        with:
+#            artifacts: lib1/build/outputs/aar/lib1-debug.aar
+#            token: ${{ secrets.GITHUB_TOKEN }}
